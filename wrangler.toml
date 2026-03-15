@@ -1,27 +1,3 @@
 name = "chore-tracker"
-main = "index.js"
 compatibility_date = "2024-01-01"
-compatibility_flags = ["nodejs_compat"]
-
-# Routes — this worker handles both the SMS webhook and the dashboard API
-# Update the zone/route after deploying your Cloudflare Pages domain
-[routes]
-# Uncomment and fill in after setting up your Cloudflare zone:
-# pattern = "chores.yourdomain.com/*"
-# zone_name = "yourdomain.com"
-
-# ─── Environment Variables (non-secret) ───────────────────────────────────────
-[vars]
-# Filled in below via secrets — do NOT put sensitive values here
-
-# ─── Secrets ──────────────────────────────────────────────────────────────────
-# Set these via: wrangler secret put SECRET_NAME
-#
-# Required secrets:
-#   GOOGLE_SERVICE_ACCOUNT_JSON   — full JSON of your GCP service account key
-#   GOOGLE_SHEET_ID               — the ID from your Google Sheet URL
-#   PARTNER1_PHONE                — e.g. "+15551234567"
-#   PARTNER1_NAME                 — e.g. "Alex"
-#   PARTNER2_PHONE                — e.g. "+15559876543"
-#   PARTNER2_NAME                 — e.g. "Jordan"
-#   TWILIO_AUTH_TOKEN             — for webhook signature validation (optional but recommended)
+pages_build_output_dir = "chore-tracker/dashboard"
