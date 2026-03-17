@@ -56,6 +56,7 @@ export default {
       return handleStatsApi(env);
     }
 
+
     if (url.pathname === '/api/chores' && request.method === 'GET') {
       return new Response(JSON.stringify(CHORES), {
         headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }
