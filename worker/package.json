@@ -1,0 +1,16 @@
+{
+  "name": "chore-tracker-worker",
+  "version": "1.0.0",
+  "description": "Chore tracking SMS bot + API — Cloudflare Worker",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail",
+    "secrets": "bash ../scripts/set-secrets.sh"
+  },
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  }
+}
