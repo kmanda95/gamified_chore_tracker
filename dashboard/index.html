@@ -446,7 +446,7 @@
           dailyRes.ok ? dailyRes.json() : null,
           logRes.ok ? logRes.json() : [],
         ]);
-        LEVELS = levelsRes.ok ? await levelsRes.json() : LEVELS;
+        try { LEVELS = levelsRes.ok ? await levelsRes.json() : LEVELS; } catch (_) {}
 
         render(statsData, dailyData, logData);
       } catch (err) {
