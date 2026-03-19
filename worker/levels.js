@@ -4,15 +4,15 @@
  */
 
 const LEVELS = [
-  { name: 'Rookie',       minXP: 0,    emoji: '🌱' },
-  { name: 'Apprentice',   minXP: 50,   emoji: '🔨' },
-  { name: 'Helper',       minXP: 125,  emoji: '🧹' },
-  { name: 'Contributor',  minXP: 250,  emoji: '⭐' },
-  { name: 'Reliable',     minXP: 400,  emoji: '💪' },
-  { name: 'Pro',          minXP: 600,  emoji: '🔥' },
-  { name: 'Expert',       minXP: 850,  emoji: '🏅' },
-  { name: 'Master',       minXP: 1150, emoji: '🥇' },
-  { name: 'Legend',       minXP: 1500, emoji: '👑' },
+  { name: 'Messy Guest',     minXP: 0,    emoji: '🧦' },
+  { name: 'Roommate',        minXP: 50,   emoji: '🛋️' },
+  { name: 'Tenant',          minXP: 125,  emoji: '🔑' },
+  { name: 'Homeowner',       minXP: 250,  emoji: '🏠' },
+  { name: 'Neat Freak',      minXP: 400,  emoji: '✨' },
+  { name: 'House Manager',   minXP: 600,  emoji: '📋' },
+  { name: 'Home Chef',       minXP: 850,  emoji: '👨‍🍳' },
+  { name: 'Estate Lord',     minXP: 1150, emoji: '🏡' },
+  { name: 'Domestic God',    minXP: 1500, emoji: '👑' },
 ];
 
 export function getLevel(monthXP) {
