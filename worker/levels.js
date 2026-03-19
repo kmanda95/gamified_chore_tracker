@@ -13,7 +13,7 @@ const LEVELS = [
   { name: 'House Manager',   minXP: 600,  emoji: '📋' },
   { name: 'Home Chef',       minXP: 850,  emoji: '👨‍🍳' },
   { name: 'Estate Lord',     minXP: 1150, emoji: '🏡' },
-  { name: 'Domestic God',    minXP: 1500, emoji: '👑' },
+  { name: 'Household CEO',   minXP: 1500, emoji: '👑' },
 ];
 
 export function getLevel(monthXP) {
