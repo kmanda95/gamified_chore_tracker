@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- deploy test -->
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -7,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-  <script const API_BASE = 'https://chore-tracker-worker.kayla-a-mandel.workers.dev/api/stats';"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <style>
     :root {
       --bg: #0d0f14;
@@ -410,18 +411,18 @@
   <script>
     // ── Config ──────────────────────────────────────────────────────────────
     // Point this at your deployed Cloudflare Worker URL
-    const API_BASE = window.WORKER_URL || 'https://chore-tracker.YOUR-SUBDOMAIN.workers.dev';
+    const API_BASE = window.WORKER_URL || 'https://chore-tracker.kayla-a-mandel.workers.dev';
 
     const LEVELS = [
-      { name: 'Rookie',      minXP: 0,    emoji: '🌱' },
-      { name: 'Apprentice',  minXP: 50,   emoji: '🔨' },
-      { name: 'Helper',      minXP: 125,  emoji: '🧹' },
-      { name: 'Contributor', minXP: 250,  emoji: '⭐' },
-      { name: 'Reliable',    minXP: 400,  emoji: '💪' },
-      { name: 'Pro',         minXP: 600,  emoji: '🔥' },
-      { name: 'Expert',      minXP: 850,  emoji: '🏅' },
-      { name: 'Master',      minXP: 1150, emoji: '🥇' },
-      { name: 'Legend',      minXP: 1500, emoji: '👑' },
+      { name: 'Messy Guest',   minXP: 0,    emoji: '🧦' },
+      { name: 'Roommate',      minXP: 50,   emoji: '🛋️' },
+      { name: 'Tenant',        minXP: 125,  emoji: '🔑' },
+      { name: 'Homeowner',     minXP: 250,  emoji: '🏠' },
+      { name: 'Neat Freak',    minXP: 400,  emoji: '✨' },
+      { name: 'House Manager', minXP: 600,  emoji: '📋' },
+      { name: 'Home Chef',     minXP: 850,  emoji: '👨‍🍳' },
+      { name: 'Estate Lord',   minXP: 1150, emoji: '🏡' },
+      { name: 'Household CEO', minXP: 1500, emoji: '👑' },
     ];
 
     function getLevelForXP(xp) {
