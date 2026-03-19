@@ -1,6 +1,7 @@
 /**
  * XP Level system.
  * Resets monthly — these thresholds are for monthly XP.
+ * Levels: Messy Guest → Domestic God
  */
 
 const LEVELS = [
