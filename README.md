@@ -221,17 +221,22 @@ Then redeploy: `wrangler deploy`
 
 | Level | XP Required |
 |-------|-------------|
-| 🌱 Rookie | 0 |
-| 🔨 Apprentice | 50 |
-| 🧹 Helper | 125 |
-| ⭐ Contributor | 250 |
-| 💪 Reliable | 400 |
-| 🔥 Pro | 600 |
-| 🏅 Expert | 850 |
-| 🥇 Master | 1,150 |
-| 👑 Legend | 1,500 |
+| 🧦 Messy Guest | 0 |
+| 🛋️ Roommate | 50 |
+| 🔑 Tenant | 125 |
+| 🏠 Homeowner | 250 |
+| ✨ Neat Freak | 400 |
+| 📋 House Manager | 600 |
+| 👨‍🍳 Home Chef | 850 |
+| 🏡 Estate Lord | 1,150 |
+| 👑 Household CEO | 1,500 |
 
 Levels reset on the 1st of each month.
+
+> **To update levels**, edit them in all 3 places:
+> 1. `worker/levels.js` — used by the Worker for SMS replies
+> 2. `dashboard/index.html` — the live dashboard UI
+> 3. `dashboard/new_index.html` — alternate dashboard UI
 
 ---
 
