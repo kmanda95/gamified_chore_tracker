@@ -413,17 +413,7 @@
     // Point this at your deployed Cloudflare Worker URL
     const API_BASE = window.WORKER_URL || 'https://chore-tracker.kayla-a-mandel.workers.dev';
 
-    const LEVELS = [
-      { name: 'Messy Guest',   minXP: 0,    emoji: '🧦' },
-      { name: 'Roommate',      minXP: 50,   emoji: '🛋️' },
-      { name: 'Tenant',        minXP: 125,  emoji: '🔑' },
-      { name: 'Homeowner',     minXP: 250,  emoji: '🏠' },
-      { name: 'Neat Freak',    minXP: 400,  emoji: '✨' },
-      { name: 'House Manager', minXP: 600,  emoji: '📋' },
-      { name: 'Home Chef',     minXP: 850,  emoji: '👨‍🍳' },
-      { name: 'Estate Lord',   minXP: 1150, emoji: '🏡' },
-      { name: 'Domestic God',  minXP: 1500, emoji: '👑' },
-    ];
+    let LEVELS = [];
 
     function getLevelForXP(xp) {
       return LEVELS.reduce((best, l) => xp >= l.minXP ? l : best, LEVELS[0]);
@@ -443,10 +433,11 @@
     // ── Fetch & render ───────────────────────────────────────────────────────
     async function loadData() {
       try {
-        const [statsRes, dailyRes, logRes] = await Promise.all([
+        const [statsRes, dailyRes, logRes, levelsRes] = await Promise.all([
           fetch(`${API_BASE}/api/stats`),
           fetch(`${API_BASE}/api/daily`),
           fetch(`${API_BASE}/api/log`),
+          fetch(`${API_BASE}/api/levels`),
         ]);
         if (!statsRes.ok) throw new Error(`Stats API: HTTP ${statsRes.status}`);
 
@@ -455,6 +446,7 @@
           dailyRes.ok ? dailyRes.json() : null,
           logRes.ok ? logRes.json() : [],
         ]);
+        LEVELS = levelsRes.ok ? await levelsRes.json() : LEVELS;
 
         render(statsData, dailyData, logData);
       } catch (err) {
