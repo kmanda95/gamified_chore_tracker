@@ -7,95 +7,148 @@
   <title>🏠 Chore Quest</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Lato:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <style>
     :root {
-      --bg: #0d0f14;
-      --surface: #151821;
-      --surface2: #1c2030;
-      --border: #252a3a;
-      --text: #e8eaf6;
-      --muted: #6b7280;
-      --p1-color: #7c6af5;
-      --p1-light: #a69af8;
-      --p2-color: #f5a56a;
-      --p2-light: #f8c49a;
-      --gold: #fbbf24;
-      --green: #34d399;
-      --red: #f87171;
-      --radius: 16px;
-      --gap: 20px;
+      --bg:        #5a8a3c;
+      --bg2:       #4a7a30;
+      --parchment: #f2e8c9;
+      --parchment2:#e8d9a8;
+      --parchment3:#dcc88a;
+      --wood:      #8B5E3C;
+      --wood-dark: #5c3a1e;
+      --wood-light:#b07d4f;
+      --border-in: #c9a96e;
+      --text:      #3b2a1a;
+      --text-light:#7a5c3a;
+      --muted:     #9e7d55;
+      --p1-color:  #7c4fa0;
+      --p1-light:  #a673c4;
+      --p2-color:  #c05a1f;
+      --p2-light:  #e07840;
+      --gold:      #d4a017;
+      --green:     #4a8c3f;
+      --green-light:#6ab85e;
+      --red:       #c0392b;
+      --radius:    4px;
+      --gap:       16px;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: 'Space Grotesk', sans-serif;
-      background: var(--bg);
+      font-family: 'Lato', sans-serif;
+      background-color: var(--bg);
+      background-image:
+        repeating-linear-gradient(0deg, rgba(0,0,0,0.04) 0px, rgba(0,0,0,0.04) 2px, transparent 2px, transparent 32px),
+        repeating-linear-gradient(90deg, rgba(0,0,0,0.04) 0px, rgba(0,0,0,0.04) 2px, transparent 2px, transparent 32px);
       color: var(--text);
       min-height: 100vh;
       padding: 24px 16px 60px;
     }
 
-    /* ── Animated background ── */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 60% 40% at 20% 10%, rgba(124,106,245,0.12) 0%, transparent 60%),
-        radial-gradient(ellipse 50% 40% at 80% 90%, rgba(245,165,106,0.10) 0%, transparent 60%);
-      pointer-events: none;
-      z-index: 0;
+    .container { max-width: 960px; margin: 0 auto; }
+
+    /* ── Pixel font helper ── */
+    .pixel { font-family: 'Press Start 2P', monospace; }
+
+    /* ── Wooden frame panels ── */
+    .wood-panel {
+      background: var(--parchment);
+      border: 6px solid var(--wood);
+      border-radius: 6px;
+      box-shadow:
+        inset 0 0 0 3px var(--wood-light),
+        inset 0 0 0 5px var(--wood),
+        4px 4px 0 var(--wood-dark),
+        6px 6px 0 rgba(0,0,0,0.2);
+      position: relative;
     }
 
-    .container { max-width: 960px; margin: 0 auto; position: relative; z-index: 1; }
+    .wood-panel::before {
+      content: '';
+      position: absolute;
+      inset: 3px;
+      border: 2px solid var(--border-in);
+      border-radius: 2px;
+      pointer-events: none;
+    }
 
     /* ── Header ── */
     header {
       text-align: center;
-      margin-bottom: 40px;
+      margin-bottom: 24px;
       animation: fadeDown 0.6s ease;
     }
 
+    .header-sign {
+      display: inline-block;
+      background: var(--wood);
+      border: 4px solid var(--wood-dark);
+      border-radius: 6px;
+      padding: 14px 32px 16px;
+      box-shadow: 4px 4px 0 var(--wood-dark), 6px 6px 0 rgba(0,0,0,0.25);
+      position: relative;
+    }
+
+    /* hanging dots */
+    .header-sign::before, .header-sign::after {
+      content: '';
+      position: absolute;
+      top: -12px;
+      width: 12px; height: 12px;
+      background: var(--wood-dark);
+      border-radius: 50%;
+      border: 2px solid #3a1e0a;
+    }
+    .header-sign::before { left: 30px; }
+    .header-sign::after  { right: 30px; }
+
     header h1 {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      font-weight: 800;
-      letter-spacing: -1px;
-      background: linear-gradient(135deg, var(--p1-light), var(--p2-light));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      font-family: 'Press Start 2P', monospace;
+      font-size: clamp(1rem, 3vw, 1.6rem);
+      color: var(--parchment);
+      text-shadow: 2px 2px 0 var(--wood-dark), -1px -1px 0 rgba(0,0,0,0.3);
+      letter-spacing: 2px;
+      line-height: 1.4;
     }
 
     header p {
-      color: var(--muted);
-      margin-top: 6px;
-      font-size: 0.95rem;
+      color: var(--parchment3);
+      margin-top: 8px;
+      font-size: 0.82rem;
+      letter-spacing: 0.05em;
     }
 
     #last-updated {
       display: inline-block;
-      margin-top: 8px;
-      font-size: 0.8rem;
-      color: var(--muted);
-      background: var(--surface);
-      border: 1px solid var(--border);
+      margin-top: 12px;
+      font-size: 0.7rem;
+      color: var(--parchment2);
+      background: rgba(0,0,0,0.25);
       padding: 3px 10px;
-      border-radius: 99px;
+      border-radius: 2px;
+      font-family: 'Press Start 2P', monospace;
+      letter-spacing: 0.05em;
     }
 
     /* ── Month banner ── */
     .month-banner {
       text-align: center;
-      margin-bottom: 28px;
-      font-size: 0.85rem;
+      margin-bottom: 20px;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.65rem;
       color: var(--gold);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-shadow: 1px 1px 0 rgba(0,0,0,0.4);
+      background: var(--wood-dark);
+      display: inline-block;
+      width: 100%;
+      padding: 8px;
+      border: 3px solid var(--wood);
+      border-radius: 4px;
+      box-shadow: 3px 3px 0 rgba(0,0,0,0.3);
     }
 
     /* ── Grid layouts ── */
@@ -108,233 +161,322 @@
 
     /* ── Cards ── */
     .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 24px;
+      background: var(--parchment);
+      border: 4px solid var(--wood);
+      border-radius: 4px;
+      padding: 18px;
+      box-shadow: 3px 3px 0 var(--wood-dark), 5px 5px 0 rgba(0,0,0,0.15);
       animation: fadeUp 0.5s ease both;
+      position: relative;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 2px;
+      border: 1px solid var(--border-in);
+      border-radius: 2px;
+      pointer-events: none;
     }
 
     .card-label {
-      font-size: 0.75rem;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.55rem;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
       color: var(--muted);
       margin-bottom: 12px;
-      font-weight: 600;
+      border-bottom: 2px solid var(--parchment3);
+      padding-bottom: 8px;
     }
 
     /* ── Player cards ── */
-    .player-card {
-      position: relative;
-      overflow: hidden;
-    }
+    .player-card { padding: 20px; }
+    .player-card.p1 { border-color: var(--p1-color); }
+    .player-card.p2 { border-color: var(--p2-color); }
 
-    .player-card.p1 { border-color: rgba(124,106,245,0.4); }
-    .player-card.p2 { border-color: rgba(245,165,106,0.4); }
-
-    .player-card::before {
+    .player-card.p1::after {
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0;
-      height: 3px;
-      border-radius: var(--radius) var(--radius) 0 0;
+      height: 4px;
+      background: var(--p1-color);
     }
-    .player-card.p1::before { background: linear-gradient(90deg, var(--p1-color), var(--p1-light)); }
-    .player-card.p2::before { background: linear-gradient(90deg, var(--p2-color), var(--p2-light)); }
-
-    .player-name {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.4rem;
-      font-weight: 700;
-      margin-bottom: 4px;
+    .player-card.p2::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--p2-color);
     }
-    .p1 .player-name { color: var(--p1-light); }
-    .p2 .player-name { color: var(--p2-light); }
 
-    .player-level {
-      font-size: 0.85rem;
-      color: var(--muted);
-      margin-bottom: 20px;
+    .player-avatar {
+      width: 48px; height: 48px;
+      background: var(--parchment2);
+      border: 3px solid var(--wood);
+      border-radius: 2px;
       display: flex;
       align-items: center;
-      gap: 6px;
+      justify-content: center;
+      font-size: 1.6rem;
+      float: left;
+      margin-right: 12px;
+      box-shadow: 2px 2px 0 var(--wood-dark);
+      flex-shrink: 0;
     }
+
+    .player-header { display: flex; align-items: flex-start; margin-bottom: 16px; }
+    .player-info { flex: 1; }
+
+    .player-name {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.8rem;
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+    .p1 .player-name { color: var(--p1-color); }
+    .p2 .player-name { color: var(--p2-color); }
 
     .level-badge {
       display: inline-flex;
       align-items: center;
-      gap: 5px;
-      padding: 2px 10px;
-      border-radius: 99px;
-      font-size: 0.78rem;
+      gap: 4px;
+      padding: 3px 8px;
+      border-radius: 2px;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.48rem;
       font-weight: 600;
+      border: 2px solid;
     }
-    .p1 .level-badge { background: rgba(124,106,245,0.2); color: var(--p1-light); border: 1px solid rgba(124,106,245,0.3); }
-    .p2 .level-badge { background: rgba(245,165,106,0.2); color: var(--p2-light); border: 1px solid rgba(245,165,106,0.3); }
+    .p1 .level-badge { background: rgba(124,79,160,0.12); color: var(--p1-color); border-color: var(--p1-color); }
+    .p2 .level-badge { background: rgba(192,90,31,0.12); color: var(--p2-color); border-color: var(--p2-color); }
 
     .xp-big {
-      font-family: 'Syne', sans-serif;
-      font-size: 2.8rem;
-      font-weight: 800;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 1.8rem;
       line-height: 1;
-      margin: 12px 0 4px;
+      margin: 12px 0 2px;
     }
-    .p1 .xp-big { color: var(--p1-light); }
-    .p2 .xp-big { color: var(--p2-light); }
+    .p1 .xp-big { color: var(--p1-color); }
+    .p2 .xp-big { color: var(--p2-color); }
 
-    .xp-label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+    .xp-label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; font-family: 'Press Start 2P', monospace; font-size: 0.48rem; }
 
-    /* XP progress bar */
-    .xp-progress {
-      margin-top: 16px;
-    }
-    .xp-progress-bar-bg {
-      height: 6px;
-      background: var(--border);
-      border-radius: 99px;
-      overflow: hidden;
-      margin-top: 6px;
-    }
-    .xp-progress-bar-fill {
-      height: 100%;
-      border-radius: 99px;
-      transition: width 1.2s cubic-bezier(.16,1,.3,1);
-    }
-    .p1 .xp-progress-bar-fill { background: linear-gradient(90deg, var(--p1-color), var(--p1-light)); }
-    .p2 .xp-progress-bar-fill { background: linear-gradient(90deg, var(--p2-color), var(--p2-light)); }
-
-    .xp-progress-labels {
+    /* Stardew-style XP bar (segmented) */
+    .xp-progress { margin-top: 14px; }
+    .xp-progress-header {
       display: flex;
       justify-content: space-between;
-      font-size: 0.72rem;
-      color: var(--muted);
-      margin-top: 4px;
+      font-size: 0.62rem;
+      color: var(--text-light);
+      margin-bottom: 4px;
+      font-weight: 700;
     }
+    .xp-bar-track {
+      display: flex;
+      gap: 2px;
+      height: 14px;
+      background: var(--parchment3);
+      padding: 2px;
+      border: 2px solid var(--wood);
+      border-radius: 2px;
+    }
+    .xp-bar-segment {
+      flex: 1;
+      background: var(--parchment3);
+      border-radius: 1px;
+      transition: background 0.6s ease;
+    }
+    .xp-bar-segment.filled-p1 { background: var(--p1-color); }
+    .xp-bar-segment.filled-p2 { background: var(--p2-color); }
 
     /* Mini stats row */
     .mini-stats {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin-top: 20px;
-      padding-top: 20px;
-      border-top: 1px solid var(--border);
+      gap: 8px;
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 2px solid var(--parchment3);
     }
-    .mini-stat { text-align: center; }
+    .mini-stat {
+      text-align: center;
+      background: var(--parchment2);
+      border: 2px solid var(--parchment3);
+      border-radius: 2px;
+      padding: 8px 4px;
+    }
     .mini-stat-val {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.2rem;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.85rem;
       font-weight: 700;
     }
-    .p1 .mini-stat-val { color: var(--p1-light); }
-    .p2 .mini-stat-val { color: var(--p2-light); }
-    .mini-stat-label { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.07em; margin-top: 2px; }
+    .p1 .mini-stat-val { color: var(--p1-color); }
+    .p2 .mini-stat-val { color: var(--p2-color); }
+    .mini-stat-label {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.42rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 4px;
+    }
 
     /* ── VS Banner ── */
     .vs-banner {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 20px 24px;
+      background: var(--parchment);
+      border: 4px solid var(--wood);
+      border-radius: 4px;
+      padding: 16px 20px;
       margin-bottom: var(--gap);
+      box-shadow: 3px 3px 0 var(--wood-dark), 5px 5px 0 rgba(0,0,0,0.15);
       animation: fadeUp 0.5s 0.1s ease both;
+      position: relative;
+    }
+    .vs-banner::before {
+      content: '';
+      position: absolute;
+      inset: 2px;
+      border: 1px solid var(--border-in);
+      border-radius: 2px;
+      pointer-events: none;
     }
 
-    .vs-inner {
+    .vs-label-row {
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 16px;
+      margin-bottom: 8px;
     }
+    .vs-name {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.6rem;
+      font-weight: 600;
+    }
+    .vs-name.p1 { color: var(--p1-color); }
+    .vs-name.p2 { color: var(--p2-color); }
 
-    .vs-bar-bg {
-      flex: 1;
-      height: 12px;
-      background: var(--border);
-      border-radius: 99px;
+    .vs-bar-outer {
+      height: 18px;
+      background: var(--parchment3);
+      border: 3px solid var(--wood);
+      border-radius: 2px;
       overflow: hidden;
       position: relative;
     }
-
     .vs-bar-p1 {
       position: absolute;
       left: 0; top: 0; bottom: 0;
-      background: linear-gradient(90deg, var(--p1-color), var(--p1-light));
-      border-radius: 99px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--p1-color) 0px,
+        var(--p1-color) 10px,
+        var(--p1-light) 10px,
+        var(--p1-light) 20px
+      );
       transition: width 1.4s cubic-bezier(.16,1,.3,1);
     }
-
-    .vs-name {
-      font-weight: 600;
-      font-size: 0.9rem;
-      min-width: 70px;
+    .vs-bar-p2-fill {
+      position: absolute;
+      right: 0; top: 0; bottom: 0;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--p2-color) 0px,
+        var(--p2-color) 10px,
+        var(--p2-light) 10px,
+        var(--p2-light) 20px
+      );
     }
-    .vs-name.p1 { color: var(--p1-light); text-align: right; }
-    .vs-name.p2 { color: var(--p2-light); }
 
-    .vs-center { font-size: 0.8rem; color: var(--muted); text-align: center; margin-top: 8px; }
+    .vs-center {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.55rem;
+      color: var(--gold);
+      text-align: center;
+      margin-top: 8px;
+      text-shadow: 1px 1px 0 rgba(0,0,0,0.3);
+    }
 
     /* ── Charts ── */
-    .chart-container { position: relative; height: 200px; }
+    .chart-container {
+      position: relative;
+      height: 190px;
+      background: var(--parchment2);
+      border: 2px solid var(--parchment3);
+      border-radius: 2px;
+      padding: 8px;
+    }
 
     /* ── Level ladder ── */
-    .level-ladder {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
+    .level-ladder { display: flex; flex-direction: column; gap: 4px; }
 
     .level-row {
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 8px 12px;
-      border-radius: 10px;
-      border: 1px solid transparent;
-      font-size: 0.85rem;
+      gap: 10px;
+      padding: 6px 10px;
+      border-radius: 2px;
+      border: 2px solid transparent;
+      font-size: 0.82rem;
       transition: all 0.2s;
     }
-
     .level-row.active {
-      background: rgba(255,255,255,0.06);
-      border-color: var(--border);
+      background: var(--parchment2);
+      border-color: var(--parchment3);
     }
-
-    .level-row.achieved { opacity: 0.4; }
-    .level-row .emoji { width: 22px; text-align: center; }
-    .level-row .level-name { flex: 1; font-weight: 500; }
-    .level-row .level-xp { font-size: 0.75rem; color: var(--muted); }
+    .level-row.achieved { opacity: 0.35; }
+    .level-row .emoji { width: 20px; text-align: center; font-size: 0.9rem; }
+    .level-row .level-name { flex: 1; font-weight: 700; font-size: 0.8rem; color: var(--text); }
+    .level-row .level-xp {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.48rem;
+      color: var(--muted);
+    }
+    .you-tag {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.42rem;
+      font-weight: 700;
+      padding: 2px 5px;
+      border-radius: 2px;
+    }
+    .you-tag-p1 { background: var(--p1-color); color: white; }
+    .you-tag-p2 { background: var(--p2-color); color: white; }
 
     /* ── Recent log ── */
     .log-table { width: 100%; border-collapse: collapse; }
     .log-table th {
       text-align: left;
-      font-size: 0.72rem;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.48rem;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.06em;
       color: var(--muted);
       padding: 0 8px 10px;
-      border-bottom: 1px solid var(--border);
+      border-bottom: 2px solid var(--parchment3);
     }
     .log-table td {
-      padding: 10px 8px;
-      font-size: 0.85rem;
-      border-bottom: 1px solid rgba(255,255,255,0.04);
+      padding: 9px 8px;
+      font-size: 0.82rem;
+      border-bottom: 1px solid var(--parchment3);
+      color: var(--text);
     }
     .log-table tr:last-child td { border-bottom: none; }
+    .log-table tr:hover td { background: var(--parchment2); }
 
-    .log-partner-p1 { color: var(--p1-light); font-weight: 600; }
-    .log-partner-p2 { color: var(--p2-light); font-weight: 600; }
+    .log-partner-p1 { color: var(--p1-color); font-weight: 700; }
+    .log-partner-p2 { color: var(--p2-color); font-weight: 700; }
 
     .xp-pill {
       display: inline-block;
-      padding: 2px 8px;
-      border-radius: 99px;
-      font-size: 0.75rem;
+      padding: 2px 7px;
+      border-radius: 2px;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.5rem;
       font-weight: 700;
-      background: rgba(52,211,153,0.15);
-      color: var(--green);
-      border: 1px solid rgba(52,211,153,0.25);
+      background: var(--green);
+      color: #fff;
+      border: 1px solid var(--green-light);
+      text-shadow: 1px 1px 0 rgba(0,0,0,0.3);
     }
 
     /* ── Loading / error states ── */
@@ -342,10 +484,13 @@
       text-align: center;
       padding: 60px 20px;
       color: var(--muted);
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.6rem;
+      line-height: 2;
     }
     .loading-state .spinner {
-      width: 32px; height: 32px;
-      border: 3px solid var(--border);
+      width: 28px; height: 28px;
+      border: 4px solid var(--parchment3);
       border-top-color: var(--p1-color);
       border-radius: 50%;
       animation: spin 0.8s linear infinite;
@@ -354,63 +499,87 @@
 
     /* ── Section headers ── */
     .section-title {
-      font-family: 'Syne', sans-serif;
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: var(--muted);
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.6rem;
+      color: var(--parchment);
       text-transform: uppercase;
-      letter-spacing: 0.12em;
-      margin: 32px 0 14px;
+      letter-spacing: 0.1em;
+      margin: 24px 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-shadow: 1px 1px 0 rgba(0,0,0,0.4);
     }
+    .section-title::before, .section-title::after {
+      content: '';
+      flex: 1;
+      height: 2px;
+      background: rgba(255,255,255,0.25);
+    }
+
+    /* ── Config banner ── */
+    .config-notice {
+      background: rgba(212,160,23,0.15);
+      border: 3px solid var(--gold);
+      border-radius: 4px;
+      padding: 12px 16px;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.55rem;
+      color: var(--wood-dark);
+      margin-bottom: 20px;
+      text-align: center;
+      line-height: 1.8;
+    }
+
+    /* ── Coin icon ── */
+    .coin { display: inline-block; width: 10px; height: 10px; background: var(--gold); border-radius: 50%; border: 1px solid #a07800; vertical-align: middle; margin-right: 3px; }
 
     /* ── Animations ── */
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
+      from { opacity: 0; transform: translateY(12px); }
       to   { opacity: 1; transform: translateY(0); }
     }
     @keyframes fadeDown {
-      from { opacity: 0; transform: translateY(-12px); }
+      from { opacity: 0; transform: translateY(-10px); }
       to   { opacity: 1; transform: translateY(0); }
     }
     @keyframes spin { to { transform: rotate(360deg); } }
 
     .card:nth-child(1) { animation-delay: 0.05s; }
-    .card:nth-child(2) { animation-delay: 0.10s; }
-    .card:nth-child(3) { animation-delay: 0.15s; }
-    .card:nth-child(4) { animation-delay: 0.20s; }
+    .card:nth-child(2) { animation-delay: 0.12s; }
+    .card:nth-child(3) { animation-delay: 0.18s; }
+    .card:nth-child(4) { animation-delay: 0.24s; }
 
-    /* ── Config banner ── */
-    .config-notice {
-      background: rgba(251,191,36,0.08);
-      border: 1px solid rgba(251,191,36,0.25);
-      border-radius: 10px;
-      padding: 12px 16px;
-      font-size: 0.83rem;
-      color: var(--gold);
-      margin-bottom: 20px;
+    /* Stardew-style decorative divider */
+    .divider {
       text-align: center;
+      color: var(--parchment3);
+      font-size: 1rem;
+      margin: 4px 0;
+      letter-spacing: 8px;
     }
   </style>
 </head>
 <body>
   <div class="container">
     <header>
-      <h1>🏠 Chore Quest</h1>
-      <p>Household XP tracker — because adulting deserves rewards</p>
-      <span id="last-updated">Loading...</span>
+      <div class="header-sign">
+        <h1>🏠 Chore Quest</h1>
+        <p>Household XP tracker — adulting deserves rewards</p>
+        <div><span id="last-updated">Loading...</span></div>
+      </div>
     </header>
 
     <div id="app">
-      <div class="loading-state">
+      <div class="loading-state card">
         <div class="spinner"></div>
-        <div>Loading your stats...</div>
+        <div>Loading your farm stats...</div>
       </div>
     </div>
   </div>
 
   <script>
     // ── Config ──────────────────────────────────────────────────────────────
-    // Point this at your deployed Cloudflare Worker URL
     const API_BASE = window.WORKER_URL || 'https://chore-tracker.kayla-a-mandel.workers.dev';
 
     const LEVELS = [
@@ -425,6 +594,8 @@
       { name: 'Household CEO', minXP: 1500, emoji: '👑' },
     ];
 
+    const TOTAL_SEGMENTS = 16;
+
     function getLevelForXP(xp) {
       return LEVELS.reduce((best, l) => xp >= l.minXP ? l : best, LEVELS[0]);
     }
@@ -435,9 +606,7 @@
       const curr = getLevelForXP(xp);
       const next = getNextLevel(xp);
       if (!next) return 100;
-      const range = next.minXP - curr.minXP;
-      const progress = xp - curr.minXP;
-      return Math.round((progress / range) * 100);
+      return Math.round(((xp - curr.minXP) / (next.minXP - curr.minXP)) * 100);
     }
 
     // ── Fetch & render ───────────────────────────────────────────────────────
@@ -460,9 +629,8 @@
       } catch (err) {
         document.getElementById('app').innerHTML = `
           <div class="config-notice">
-            ⚠️ Could not connect to the worker API. Update <code>API_BASE</code> in this file to your deployed Worker URL, then refresh.
+            ⚠️ Could not connect to the worker API.<br>Update API_BASE to your deployed Worker URL, then refresh.<br><br>Error: ${err.message}
           </div>
-          <div class="loading-state" style="color:#f87171">Error: ${err.message}</div>
         `;
       }
     }
@@ -474,33 +642,30 @@
 
       const totalBoth = (p1.monthXP || 0) + (p2.monthXP || 0);
       const p1Pct = totalBoth ? Math.round((p1.monthXP / totalBoth) * 100) : 50;
-
-      const p1Level = getLevelForXP(p1.monthXP || 0);
-      const p2Level = getLevelForXP(p2.monthXP || 0);
-      const p1Next = getNextLevel(p1.monthXP || 0);
-      const p2Next = getNextLevel(p2.monthXP || 0);
+      const p2Pct = 100 - p1Pct;
 
       document.getElementById('last-updated').textContent = `Updated ${now.toLocaleTimeString()}`;
 
       document.getElementById('app').innerHTML = `
-        <div class="month-banner">⚔️ ${monthName} — Monthly Rankings Reset on the 1st</div>
+        <div class="month-banner">⚔️ ${monthName} — Rankings Reset Each Month ⚔️</div>
 
         <!-- VS banner -->
         <div class="vs-banner">
-          <div class="vs-inner">
-            <span class="vs-name p1">${p1.partnerName || 'Partner 1'}<br><small style="color:var(--muted)">${p1.monthXP} XP</small></span>
-            <div class="vs-bar-bg">
-              <div class="vs-bar-p1" id="vs-bar" style="width:0%"></div>
-            </div>
-            <span class="vs-name p2">${p2.partnerName || 'Partner 2'}<br><small style="color:var(--muted)">${p2.monthXP} XP</small></span>
+          <div class="vs-label-row">
+            <span class="vs-name p1">${p1.partnerName || 'Partner 1'} — ${p1.monthXP} XP</span>
+            <span class="vs-name p2">${p2.partnerName || 'Partner 2'} — ${p2.monthXP} XP</span>
+          </div>
+          <div class="vs-bar-outer">
+            <div class="vs-bar-p1" id="vs-bar" style="width:0%"></div>
+            <div class="vs-bar-p2-fill" id="vs-bar-p2" style="width:0%"></div>
           </div>
           <div class="vs-center" id="vs-label">...</div>
         </div>
 
         <!-- Player cards -->
         <div class="grid-2">
-          ${playerCard(p1, 'p1', p1Level, p1Next)}
-          ${playerCard(p2, 'p2', p2Level, p2Next)}
+          ${playerCard(p1, 'p1')}
+          ${playerCard(p2, 'p2')}
         </div>
 
         <!-- Charts -->
@@ -538,22 +703,24 @@
         <div class="card">
           <div id="recent-log">
             <div class="loading-state" style="padding:20px">
-              <div class="spinner" style="width:20px;height:20px;border-width:2px"></div>
+              <div class="spinner" style="width:20px;height:20px;border-width:3px"></div>
             </div>
           </div>
         </div>
       `;
 
-      // Animate VS bar after render
+      // Animate VS bar
       requestAnimationFrame(() => {
         const bar = document.getElementById('vs-bar');
-        if (bar) {
-          setTimeout(() => { bar.style.width = `${p1Pct}%`; }, 100);
-        }
+        const bar2 = document.getElementById('vs-bar-p2');
+        if (bar) setTimeout(() => {
+          bar.style.width = `${p1Pct}%`;
+          bar2.style.width = `${p2Pct}%`;
+        }, 100);
         const label = document.getElementById('vs-label');
         if (label) {
-          if (p1.monthXP > p2.monthXP) label.textContent = `🥇 ${p1.partnerName || 'P1'} is winning this month`;
-          else if (p2.monthXP > p1.monthXP) label.textContent = `🥇 ${p2.partnerName || 'P2'} is winning this month`;
+          if (p1.monthXP > p2.monthXP) label.textContent = `🥇 ${p1.partnerName || 'P1'} is winning this month!`;
+          else if (p2.monthXP > p1.monthXP) label.textContent = `🥇 ${p2.partnerName || 'P2'} is winning this month!`;
           else label.textContent = `🤝 It's a tie!`;
         }
       });
@@ -562,29 +729,38 @@
       renderRecentLog(logData || [], p1.partnerName, p2.partnerName);
     }
 
-    function playerCard(p, cls, level, nextLevel) {
+    function playerCard(p, cls) {
       const xp = p.monthXP || 0;
       const pct = xpProgressPct(xp);
+      const level = getLevelForXP(xp);
+      const nextLevel = getNextLevel(xp);
       const name = p.partnerName || (cls === 'p1' ? 'Partner 1' : 'Partner 2');
+      const avatar = cls === 'p1' ? '🧑‍🌾' : '👩‍🌾';
+      const filledSegs = Math.round((pct / 100) * TOTAL_SEGMENTS);
+
+      const segments = Array.from({ length: TOTAL_SEGMENTS }, (_, i) =>
+        `<div class="xp-bar-segment ${i < filledSegs ? `filled-${cls}` : ''}"></div>`
+      ).join('');
 
       return `
         <div class="card player-card ${cls}">
-          <div class="player-name">${name}</div>
-          <div class="player-level">
-            <span class="level-badge">${level.emoji} ${level.name}</span>
+          <div class="player-header">
+            <div class="player-avatar">${avatar}</div>
+            <div class="player-info">
+              <div class="player-name">${name}</div>
+              <span class="level-badge">${level.emoji} ${level.name}</span>
+            </div>
           </div>
 
           <div class="xp-label">Monthly XP</div>
           <div class="xp-big">${xp.toLocaleString()}</div>
 
           <div class="xp-progress">
-            <div class="xp-progress-labels">
+            <div class="xp-progress-header">
               <span>${level.name}</span>
-              <span>${nextLevel ? `${nextLevel.name} in ${nextLevel.minXP - xp} XP` : '🏆 Max Level!'}</span>
+              <span>${nextLevel ? `${nextLevel.minXP - xp} XP to ${nextLevel.name}` : '🏆 Max Level!'}</span>
             </div>
-            <div class="xp-progress-bar-bg">
-              <div class="xp-progress-bar-fill" style="width:${pct}%"></div>
-            </div>
+            <div class="xp-bar-track">${segments}</div>
           </div>
 
           <div class="mini-stats">
@@ -616,7 +792,7 @@
             <span class="emoji">${level.emoji}</span>
             <span class="level-name">${level.name}</span>
             <span class="level-xp">${level.minXP} XP</span>
-            ${isActive ? `<span style="font-size:0.72rem;color:var(--${cls === 'p1' ? 'p1' : 'p2'}-light);font-weight:700">← YOU</span>` : ''}
+            ${isActive ? `<span class="you-tag you-tag-${cls}">YOU</span>` : ''}
           </div>
         `;
       }).join('');
@@ -629,14 +805,25 @@
       const chartDefaults = {
         responsive: true,
         maintainAspectRatio: false,
-        plugins: { legend: { display: true, labels: { color: '#9ca3af', font: { family: 'Space Grotesk', size: 11 } } } },
+        plugins: {
+          legend: {
+            display: true,
+            labels: { color: '#7a5c3a', font: { family: 'Lato', size: 11 }, boxWidth: 12 }
+          }
+        },
         scales: {
-          x: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#6b7280', font: { family: 'Space Grotesk', size: 10 }, maxRotation: 0, autoSkip: true, maxTicksLimit: 10 } },
-          y: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#6b7280', font: { family: 'Space Grotesk' } }, beginAtZero: true },
+          x: {
+            grid: { color: 'rgba(139,94,60,0.1)' },
+            ticks: { color: '#9e7d55', font: { family: 'Lato', size: 10 }, maxRotation: 0, autoSkip: true, maxTicksLimit: 10 }
+          },
+          y: {
+            grid: { color: 'rgba(139,94,60,0.1)' },
+            ticks: { color: '#9e7d55', font: { family: 'Lato' } },
+            beginAtZero: true
+          },
         }
       };
 
-      // Daily XP chart — real data from /api/daily
       const labels = dailyData?.dates?.map(d => {
         const dt = new Date(d);
         return dt.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
@@ -650,25 +837,24 @@
             {
               label: p1Name,
               data: dailyData?.p1Data || [],
-              backgroundColor: 'rgba(124,106,245,0.65)',
-              borderColor: '#7c6af5',
-              borderWidth: 1,
-              borderRadius: 5,
+              backgroundColor: 'rgba(124,79,160,0.7)',
+              borderColor: '#7c4fa0',
+              borderWidth: 2,
+              borderRadius: 2,
             },
             {
               label: p2Name,
               data: dailyData?.p2Data || [],
-              backgroundColor: 'rgba(245,165,106,0.65)',
-              borderColor: '#f5a56a',
-              borderWidth: 1,
-              borderRadius: 5,
+              backgroundColor: 'rgba(192,90,31,0.7)',
+              borderColor: '#c05a1f',
+              borderWidth: 2,
+              borderRadius: 2,
             }
           ]
         },
         options: chartDefaults,
       });
 
-      // Cumulative XP line chart for the month
       const p1Cumulative = [], p2Cumulative = [];
       let p1Sum = 0, p2Sum = 0;
       (dailyData?.p1Data || []).forEach((v, i) => {
@@ -686,22 +872,24 @@
             {
               label: p1Name,
               data: p1Cumulative,
-              borderColor: '#7c6af5',
-              backgroundColor: 'rgba(124,106,245,0.1)',
+              borderColor: '#7c4fa0',
+              backgroundColor: 'rgba(124,79,160,0.12)',
               tension: 0.4,
               fill: true,
               pointRadius: labels.length < 15 ? 3 : 0,
-              pointBackgroundColor: '#7c6af5',
+              pointBackgroundColor: '#7c4fa0',
+              borderWidth: 2,
             },
             {
               label: p2Name,
               data: p2Cumulative,
-              borderColor: '#f5a56a',
-              backgroundColor: 'rgba(245,165,106,0.1)',
+              borderColor: '#c05a1f',
+              backgroundColor: 'rgba(192,90,31,0.12)',
               tension: 0.4,
               fill: true,
               pointRadius: labels.length < 15 ? 3 : 0,
-              pointBackgroundColor: '#f5a56a',
+              pointBackgroundColor: '#c05a1f',
+              borderWidth: 2,
             }
           ]
         },
@@ -712,7 +900,7 @@
     function renderRecentLog(rows, p1Name, p2Name) {
       const logEl = document.getElementById('recent-log');
       if (!rows || rows.length === 0) {
-        logEl.innerHTML = `<p style="color:var(--muted);text-align:center;padding:20px">No chores logged yet. Text your Twilio number to get started!</p>`;
+        logEl.innerHTML = `<p style="color:var(--muted);text-align:center;padding:20px;font-family:'Press Start 2P',monospace;font-size:0.55rem;line-height:2">No chores logged yet.<br>Text your Twilio number to get started!</p>`;
         return;
       }
 
@@ -747,7 +935,6 @@
 
     // ── Init ─────────────────────────────────────────────────────────────────
     loadData();
-    // Auto-refresh every 2 minutes
     setInterval(loadData, 120_000);
   </script>
 </body>
