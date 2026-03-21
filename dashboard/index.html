@@ -612,25 +612,23 @@
 
     // ── Fetch & render ───────────────────────────────────────────────────────
     async function loadData() {
-      // Fetch levels separately so a failure here never blocks the main render
-      fetch(`${API_BASE}/api/levels`)
-        .then(r => r.ok ? r.json() : null)
-        .then(data => { if (Array.isArray(data) && data.length) LEVELS.splice(0, LEVELS.length, ...data); })
-        .catch(() => {});
-
       try {
-        const [statsRes, dailyRes, logRes] = await Promise.all([
+        const [statsRes, dailyRes, logRes, levelsRes] = await Promise.all([
           fetch(`${API_BASE}/api/stats`),
           fetch(`${API_BASE}/api/daily`),
           fetch(`${API_BASE}/api/log`),
+          fetch(`${API_BASE}/api/levels`).catch(() => null),
         ]);
         if (!statsRes.ok) throw new Error(`Stats API: HTTP ${statsRes.status}`);
 
-        const [statsData, dailyData, logData] = await Promise.all([
+        const [statsData, dailyData, logData, levelsData] = await Promise.all([
           statsRes.json(),
           dailyRes.ok ? dailyRes.json() : null,
           logRes.ok ? logRes.json() : [],
+          levelsRes && levelsRes.ok ? levelsRes.json() : Promise.resolve(null),
         ]);
+
+        if (Array.isArray(levelsData) && levelsData.length) LEVELS.splice(0, LEVELS.length, ...levelsData);
 
         render(statsData, dailyData, logData);
       } catch (err) {
