@@ -7,7 +7,7 @@
 import { fuzzyMatch } from './fuzzy.js';
 import { getGoogleToken, appendChoreLog, getStats, getDailyXP, getRecentLog } from './sheets.js';
 import { twimlResponse } from './twilio.js';
-import { getLevel, getLevelEmoji, xpToNextLevel } from './levels.js';
+import { getLevel, getLevelEmoji, xpToNextLevel, getAllLevels } from './levels.js';
 
 // ─── Chore Definitions ────────────────────────────────────────────────────────
 // Edit this list to add/remove chores and their XP values.
@@ -76,6 +76,12 @@ export default {
       return handleStatsApi(env);
     }
 
+
+    if (url.pathname === '/api/levels' && request.method === 'GET') {
+      return new Response(JSON.stringify(getAllLevels()), {
+        headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+      });
+    }
 
     if (url.pathname === '/api/chores' && request.method === 'GET') {
       return new Response(JSON.stringify(CHORES), {

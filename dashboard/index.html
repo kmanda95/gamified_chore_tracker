@@ -612,6 +612,12 @@
 
     // ── Fetch & render ───────────────────────────────────────────────────────
     async function loadData() {
+      // Fetch levels separately so a failure here never blocks the main render
+      fetch(`${API_BASE}/api/levels`)
+        .then(r => r.ok ? r.json() : null)
+        .then(data => { if (Array.isArray(data) && data.length) LEVELS.splice(0, LEVELS.length, ...data); })
+        .catch(() => {});
+
       try {
         const [statsRes, dailyRes, logRes] = await Promise.all([
           fetch(`${API_BASE}/api/stats`),
