@@ -735,7 +735,7 @@
       const level = getLevelForXP(xp);
       const nextLevel = getNextLevel(xp);
       const name = p.partnerName || (cls === 'p1' ? 'Partner 1' : 'Partner 2');
-      const avatar = cls === 'p1' ? '🧑‍🌾' : '👩‍🌾';
+      const avatar = cls === 'p1' ? '👩‍🌾' : '🧑‍🌾';
       const filledSegs = Math.round((pct / 100) * TOTAL_SEGMENTS);
 
       const segments = Array.from({ length: TOTAL_SEGMENTS }, (_, i) =>
