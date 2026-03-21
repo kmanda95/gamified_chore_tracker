@@ -425,7 +425,8 @@
       border-color: var(--parchment3);
     }
     .level-row.achieved { opacity: 0.35; }
-    .level-row .emoji { width: 20px; text-align: center; font-size: 0.9rem; }
+    .level-row .emoji { width: 20px; text-align: center; }
+    .level-icon { width: 20px; height: 20px; object-fit: contain; vertical-align: middle; image-rendering: pixelated; }
     .level-row .level-name { flex: 1; font-weight: 700; font-size: 0.8rem; color: var(--text); }
     .level-row .level-xp {
       font-family: 'Press Start 2P', monospace;
@@ -583,15 +584,15 @@
     const API_BASE = window.WORKER_URL || 'https://chore-tracker.kayla-a-mandel.workers.dev';
 
     const LEVELS = [
-      { name: 'Messy Guest',   minXP: 0,    emoji: '🧦' },
-      { name: 'Roommate',      minXP: 50,   emoji: '🛋️' },
-      { name: 'Tenant',        minXP: 125,  emoji: '🔑' },
-      { name: 'Homeowner',     minXP: 250,  emoji: '🏠' },
-      { name: 'Neat Freak',    minXP: 400,  emoji: '✨' },
-      { name: 'House Manager', minXP: 600,  emoji: '📋' },
-      { name: 'Home Chef',     minXP: 850,  emoji: '👨‍🍳' },
-      { name: 'Estate Lord',   minXP: 1150, emoji: '🏡' },
-      { name: 'Household CEO', minXP: 1500, emoji: '👑' },
+      { name: 'Fresh Sprout',       minXP: 0,    emoji: 'Mixed_Seeds.png' },
+      { name: 'New to the Farm',    minXP: 50,   emoji: 'Steel_Watering_Can.png' },
+      { name: 'Learning the Land',  minXP: 125,  emoji: 'Gold_Hoe.png' },
+      { name: 'Tending the Plot',   minXP: 250,  emoji: 'Corn.png' },
+      { name: 'Full-Time Farmer',   minXP: 400,  emoji: 'Scarecrow.png' },
+      { name: 'Harvest Ready',      minXP: 600,  emoji: 'Wheat.png' },
+      { name: 'Keeper of the Farm', minXP: 850,  emoji: 'House.png' },
+      { name: 'Master of the Land', minXP: 1150, emoji: 'Gold_Pickaxe.png' },
+      { name: 'Legendary Farmer',   minXP: 1500, emoji: 'Iridium_Scythe.png' },
     ];
 
     const TOTAL_SEGMENTS = 16;
@@ -748,7 +749,7 @@
             <div class="player-avatar">${avatar}</div>
             <div class="player-info">
               <div class="player-name">${name}</div>
-              <span class="level-badge">${level.emoji} ${level.name}</span>
+              <span class="level-badge"><img src="/stardew_icons/${level.emoji}" class="level-icon"> ${level.name}</span>
             </div>
           </div>
 
@@ -789,7 +790,7 @@
 
         return `
           <div class="level-row ${isActive ? 'active' : ''} ${isAchieved ? 'achieved' : ''}">
-            <span class="emoji">${level.emoji}</span>
+            <img src="/stardew_icons/${level.emoji}" class="level-icon emoji">
             <span class="level-name">${level.name}</span>
             <span class="level-xp">${level.minXP} XP</span>
             ${isActive ? `<span class="you-tag you-tag-${cls}">YOU</span>` : ''}
