@@ -67,58 +67,71 @@ function getPartnerName(phoneNumber, env) {
 }
 
 // ─── Main Handler ─────────────────────────────────────────────────────────────
-const CORS_HEADERS = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type',
-};
-
 export default {
   async fetch(request, env, ctx) {
-    const url = new URL(request.url);
-
     // CORS preflight
     if (request.method === 'OPTIONS') {
-      return new Response(null, { status: 204, headers: CORS_HEADERS });
-    }
-
-    // Dashboard API endpoints
-    if (url.pathname === '/api/stats' && request.method === 'GET') {
-      return handleStatsApi(env);
-    }
-
-    if (url.pathname === '/api/levels' && request.method === 'GET') {
-      return new Response(JSON.stringify(getAllLevels()), {
-        headers: { 'Content-Type': 'application/json', ...CORS_HEADERS },
+      return new Response(null, {
+        status: 204,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+          'Access-Control-Allow-Headers': 'Content-Type',
+        },
       });
     }
 
-    if (url.pathname === '/api/chores' && request.method === 'GET') {
-      return new Response(JSON.stringify(CHORES), {
-        headers: { 'Content-Type': 'application/json', ...CORS_HEADERS }
-      });
-    }
+    const response = await routeRequest(request, env, ctx);
 
-    if (url.pathname === '/api/log' && request.method === 'GET') {
-      return handleLogApi(env);
-    }
-
-    if (url.pathname === '/api/log' && request.method === 'POST') {
-      return handleDashboardLog(request, env);
-    }
-
-    if (url.pathname === '/api/daily' && request.method === 'GET') {
-      return handleDailyApi(env);
-    }
-
-    // Twilio SMS webhook
-    if (url.pathname === '/sms' && request.method === 'POST') {
-      return handleSms(request, env, ctx);
-    }
-
-    return new Response('Chore Tracker is running! 🏠', { status: 200 });
+    // Inject CORS header on every response
+    const headers = new Headers(response.headers);
+    headers.set('Access-Control-Allow-Origin', '*');
+    return new Response(response.body, {
+      status: response.status,
+      statusText: response.statusText,
+      headers,
+    });
   }
 };
+
+async function routeRequest(request, env, ctx) {
+  const url = new URL(request.url);
+
+  if (url.pathname === '/api/stats' && request.method === 'GET') {
+    return handleStatsApi(env);
+  }
+
+  if (url.pathname === '/api/levels' && request.method === 'GET') {
+    return new Response(JSON.stringify(getAllLevels()), {
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+
+  if (url.pathname === '/api/chores' && request.method === 'GET') {
+    return new Response(JSON.stringify(CHORES), {
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+
+  if (url.pathname === '/api/log' && request.method === 'GET') {
+    return handleLogApi(env);
+  }
+
+  if (url.pathname === '/api/log' && request.method === 'POST') {
+    return handleDashboardLog(request, env);
+  }
+
+  if (url.pathname === '/api/daily' && request.method === 'GET') {
+    return handleDailyApi(env);
+  }
+
+  // Twilio SMS webhook
+  if (url.pathname === '/sms' && request.method === 'POST') {
+    return handleSms(request, env, ctx);
+  }
+
+  return new Response('Chore Tracker is running! 🏠', { status: 200 });
+}
 
 // ─── SMS Handler ──────────────────────────────────────────────────────────────
 async function handleSms(request, env, ctx) {
@@ -232,7 +245,7 @@ async function handleDashboardLog(request, env) {
     if (!validNames.includes(partner)) {
       return new Response(JSON.stringify({ error: 'Unknown partner' }), {
         status: 400,
-        headers: { 'Content-Type': 'application/json', ...CORS_HEADERS },
+        headers: { 'Content-Type': 'application/json' },
       });
     }
 
@@ -240,7 +253,7 @@ async function handleDashboardLog(request, env) {
     if (!chore) {
       return new Response(JSON.stringify({ error: 'Unknown chore' }), {
         status: 400,
-        headers: { 'Content-Type': 'application/json', ...CORS_HEADERS },
+        headers: { 'Content-Type': 'application/json' },
       });
     }
 
@@ -259,12 +272,12 @@ async function handleDashboardLog(request, env) {
     });
 
     return new Response(JSON.stringify({ success: true, xp: chore.xp, chore: chore.name }), {
-      headers: { 'Content-Type': 'application/json', ...CORS_HEADERS },
+      headers: { 'Content-Type': 'application/json' },
     });
   } catch (err) {
     return new Response(JSON.stringify({ error: err.message }), {
       status: 500,
-      headers: { 'Content-Type': 'application/json', ...CORS_HEADERS },
+      headers: { 'Content-Type': 'application/json' },
     });
   }
 }
