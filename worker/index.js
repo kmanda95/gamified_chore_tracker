@@ -239,7 +239,7 @@ async function handleStatsCommand(partnerName, env) {
 // ─── Dashboard Log Handler ────────────────────────────────────────────────────
 async function handleDashboardLog(request, env) {
   try {
-    const { partner, chore: choreName } = await request.json();
+    const { partner, chore: choreName, date: dateParam } = await request.json();
 
     const validNames = [env.PARTNER1_NAME, env.PARTNER2_NAME].filter(Boolean);
     if (!validNames.includes(partner)) {
@@ -258,9 +258,9 @@ async function handleDashboardLog(request, env) {
     }
 
     const token = await getGoogleToken(env);
-    const now = new Date();
+    const now = dateParam ? new Date(dateParam + 'T12:00:00') : new Date();
     const dateStr = now.toLocaleDateString('en-US', { timeZone: 'America/Chicago' });
-    const timeStr = now.toLocaleTimeString('en-US', { timeZone: 'America/Chicago', hour: '2-digit', minute: '2-digit' });
+    const timeStr = dateParam ? '' : now.toLocaleTimeString('en-US', { timeZone: 'America/Chicago', hour: '2-digit', minute: '2-digit' });
 
     await appendChoreLog(env, token, {
       date: dateStr,

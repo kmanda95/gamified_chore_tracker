@@ -575,6 +575,35 @@
     }
     .chore-input::placeholder { color: var(--muted); }
 
+    .chore-date-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .chore-date-label {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.5rem;
+      color: var(--text-light);
+      white-space: nowrap;
+    }
+    .chore-date-input {
+      flex: 1;
+      padding: 9px 12px;
+      border: 2px solid var(--wood);
+      border-radius: var(--radius);
+      background: var(--parchment2);
+      color: var(--text);
+      font-family: 'Lato', sans-serif;
+      font-size: 0.95rem;
+      cursor: pointer;
+    }
+    .chore-date-input:focus {
+      outline: none;
+      border-color: var(--wood-light);
+      box-shadow: 0 0 0 2px rgba(139,94,60,0.2);
+    }
+
     .chore-dropdown {
       position: absolute;
       top: calc(100% + 4px);
@@ -743,6 +772,12 @@
           onKeyDown="onChoreKeyDown(event)"
         />
         <div class="chore-dropdown" id="chore-dropdown"></div>
+      </div>
+
+      <!-- Date selector -->
+      <div class="chore-date-wrap">
+        <label class="chore-date-label" for="chore-date">📅 Date</label>
+        <input type="date" id="chore-date" class="chore-date-input" />
       </div>
 
       <button class="log-submit-btn" id="log-submit-btn" onclick="submitChore()" disabled>
@@ -935,6 +970,7 @@
           body: JSON.stringify({
             partner: personName,
             chore: selectedChore.name,
+            date: document.getElementById('chore-date').value,
           }),
         });
 
@@ -1276,6 +1312,7 @@
     }
 
     // ── Init ─────────────────────────────────────────────────────────────────────
+    document.getElementById('chore-date').value = new Date().toLocaleDateString('en-CA');
     loadData();
     setInterval(loadData, 120_000);
   </script>
