@@ -67,30 +67,44 @@ function getPartnerName(phoneNumber, env) {
 }
 
 // ─── Main Handler ─────────────────────────────────────────────────────────────
+const CORS_HEADERS = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type',
+};
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
+
+    // CORS preflight
+    if (request.method === 'OPTIONS') {
+      return new Response(null, { status: 204, headers: CORS_HEADERS });
+    }
 
     // Dashboard API endpoints
     if (url.pathname === '/api/stats' && request.method === 'GET') {
       return handleStatsApi(env);
     }
 
-
     if (url.pathname === '/api/levels' && request.method === 'GET') {
       return new Response(JSON.stringify(getAllLevels()), {
-        headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+        headers: { 'Content-Type': 'application/json', ...CORS_HEADERS },
       });
     }
 
     if (url.pathname === '/api/chores' && request.method === 'GET') {
       return new Response(JSON.stringify(CHORES), {
-        headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }
+        headers: { 'Content-Type': 'application/json', ...CORS_HEADERS }
       });
     }
 
     if (url.pathname === '/api/log' && request.method === 'GET') {
       return handleLogApi(env);
+    }
+
+    if (url.pathname === '/api/log' && request.method === 'POST') {
+      return handleDashboardLog(request, env);
     }
 
     if (url.pathname === '/api/daily' && request.method === 'GET') {
@@ -207,6 +221,52 @@ async function handleStatsCommand(partnerName, env) {
   ].join('\n');
 
   return twimlResponse(reply);
+}
+
+// ─── Dashboard Log Handler ────────────────────────────────────────────────────
+async function handleDashboardLog(request, env) {
+  try {
+    const { partner, chore: choreName } = await request.json();
+
+    const validNames = [env.PARTNER1_NAME, env.PARTNER2_NAME].filter(Boolean);
+    if (!validNames.includes(partner)) {
+      return new Response(JSON.stringify({ error: 'Unknown partner' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json', ...CORS_HEADERS },
+      });
+    }
+
+    const chore = CHORES.find(c => c.name.toLowerCase() === choreName.toLowerCase());
+    if (!chore) {
+      return new Response(JSON.stringify({ error: 'Unknown chore' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json', ...CORS_HEADERS },
+      });
+    }
+
+    const token = await getGoogleToken(env);
+    const now = new Date();
+    const dateStr = now.toLocaleDateString('en-US', { timeZone: 'America/Chicago' });
+    const timeStr = now.toLocaleTimeString('en-US', { timeZone: 'America/Chicago', hour: '2-digit', minute: '2-digit' });
+
+    await appendChoreLog(env, token, {
+      date: dateStr,
+      time: timeStr,
+      partner,
+      chore: chore.name,
+      xp: chore.xp,
+      rawInput: 'dashboard',
+    });
+
+    return new Response(JSON.stringify({ success: true, xp: chore.xp, chore: chore.name }), {
+      headers: { 'Content-Type': 'application/json', ...CORS_HEADERS },
+    });
+  } catch (err) {
+    return new Response(JSON.stringify({ error: err.message }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json', ...CORS_HEADERS },
+    });
+  }
 }
 
 // ─── Stats API (for dashboard) ────────────────────────────────────────────────

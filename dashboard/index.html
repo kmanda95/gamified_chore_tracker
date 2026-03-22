@@ -50,7 +50,6 @@
 
     .container { max-width: 960px; margin: 0 auto; }
 
-    /* ── Pixel font helper ── */
     .pixel { font-family: 'Press Start 2P', monospace; }
 
     /* ── Wooden frame panels ── */
@@ -65,7 +64,6 @@
         6px 6px 0 rgba(0,0,0,0.2);
       position: relative;
     }
-
     .wood-panel::before {
       content: '';
       position: absolute;
@@ -81,7 +79,6 @@
       margin-bottom: 24px;
       animation: fadeDown 0.6s ease;
     }
-
     .header-sign {
       display: inline-block;
       background: var(--wood);
@@ -91,8 +88,6 @@
       box-shadow: 4px 4px 0 var(--wood-dark), 6px 6px 0 rgba(0,0,0,0.25);
       position: relative;
     }
-
-    /* hanging dots */
     .header-sign::before, .header-sign::after {
       content: '';
       position: absolute;
@@ -104,7 +99,6 @@
     }
     .header-sign::before { left: 30px; }
     .header-sign::after  { right: 30px; }
-
     header h1 {
       font-family: 'Press Start 2P', monospace;
       font-size: clamp(1rem, 3vw, 1.6rem);
@@ -113,14 +107,12 @@
       letter-spacing: 2px;
       line-height: 1.4;
     }
-
     header p {
       color: var(--parchment3);
       margin-top: 8px;
       font-size: 0.82rem;
       letter-spacing: 0.05em;
     }
-
     #last-updated {
       display: inline-block;
       margin-top: 12px;
@@ -154,7 +146,6 @@
     /* ── Grid layouts ── */
     .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); }
     .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: var(--gap); }
-
     @media (max-width: 640px) {
       .grid-2, .grid-3 { grid-template-columns: 1fr; }
     }
@@ -169,7 +160,6 @@
       animation: fadeUp 0.5s ease both;
       position: relative;
     }
-
     .card::before {
       content: '';
       position: absolute;
@@ -178,7 +168,6 @@
       border-radius: 2px;
       pointer-events: none;
     }
-
     .card-label {
       font-family: 'Press Start 2P', monospace;
       font-size: 0.55rem;
@@ -194,22 +183,16 @@
     .player-card { padding: 20px; }
     .player-card.p1 { border-color: var(--p1-color); }
     .player-card.p2 { border-color: var(--p2-color); }
-
     .player-card.p1::after {
-      content: '';
-      position: absolute;
+      content: ''; position: absolute;
       top: 0; left: 0; right: 0;
-      height: 4px;
-      background: var(--p1-color);
+      height: 4px; background: var(--p1-color);
     }
     .player-card.p2::after {
-      content: '';
-      position: absolute;
+      content: ''; position: absolute;
       top: 0; left: 0; right: 0;
-      height: 4px;
-      background: var(--p2-color);
+      height: 4px; background: var(--p2-color);
     }
-
     .player-avatar {
       width: 48px; height: 48px;
       background: var(--parchment2);
@@ -224,10 +207,8 @@
       box-shadow: 2px 2px 0 var(--wood-dark);
       flex-shrink: 0;
     }
-
     .player-header { display: flex; align-items: flex-start; margin-bottom: 16px; }
     .player-info { flex: 1; }
-
     .player-name {
       font-family: 'Press Start 2P', monospace;
       font-size: 0.8rem;
@@ -236,7 +217,6 @@
     }
     .p1 .player-name { color: var(--p1-color); }
     .p2 .player-name { color: var(--p2-color); }
-
     .level-badge {
       display: inline-flex;
       align-items: center;
@@ -250,7 +230,6 @@
     }
     .p1 .level-badge { background: rgba(124,79,160,0.12); color: var(--p1-color); border-color: var(--p1-color); }
     .p2 .level-badge { background: rgba(192,90,31,0.12); color: var(--p2-color); border-color: var(--p2-color); }
-
     .xp-big {
       font-family: 'Press Start 2P', monospace;
       font-size: 1.8rem;
@@ -259,10 +238,7 @@
     }
     .p1 .xp-big { color: var(--p1-color); }
     .p2 .xp-big { color: var(--p2-color); }
-
-    .xp-label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; font-family: 'Press Start 2P', monospace; font-size: 0.48rem; }
-
-    /* Stardew-style XP bar (segmented) */
+    .xp-label { font-family: 'Press Start 2P', monospace; font-size: 0.48rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
     .xp-progress { margin-top: 14px; }
     .xp-progress-header {
       display: flex;
@@ -289,8 +265,6 @@
     }
     .xp-bar-segment.filled-p1 { background: var(--p1-color); }
     .xp-bar-segment.filled-p2 { background: var(--p2-color); }
-
-    /* Mini stats row */
     .mini-stats {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -334,28 +308,19 @@
       position: relative;
     }
     .vs-banner::before {
-      content: '';
-      position: absolute;
-      inset: 2px;
-      border: 1px solid var(--border-in);
-      border-radius: 2px;
-      pointer-events: none;
+      content: ''; position: absolute;
+      inset: 2px; border: 1px solid var(--border-in);
+      border-radius: 2px; pointer-events: none;
     }
-
     .vs-label-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 8px;
     }
-    .vs-name {
-      font-family: 'Press Start 2P', monospace;
-      font-size: 0.6rem;
-      font-weight: 600;
-    }
+    .vs-name { font-family: 'Press Start 2P', monospace; font-size: 0.6rem; font-weight: 600; }
     .vs-name.p1 { color: var(--p1-color); }
     .vs-name.p2 { color: var(--p2-color); }
-
     .vs-bar-outer {
       height: 18px;
       background: var(--parchment3);
@@ -365,29 +330,14 @@
       position: relative;
     }
     .vs-bar-p1 {
-      position: absolute;
-      left: 0; top: 0; bottom: 0;
-      background: repeating-linear-gradient(
-        90deg,
-        var(--p1-color) 0px,
-        var(--p1-color) 10px,
-        var(--p1-light) 10px,
-        var(--p1-light) 20px
-      );
+      position: absolute; left: 0; top: 0; bottom: 0;
+      background: repeating-linear-gradient(90deg, var(--p1-color) 0px, var(--p1-color) 10px, var(--p1-light) 10px, var(--p1-light) 20px);
       transition: width 1.4s cubic-bezier(.16,1,.3,1);
     }
     .vs-bar-p2-fill {
-      position: absolute;
-      right: 0; top: 0; bottom: 0;
-      background: repeating-linear-gradient(
-        90deg,
-        var(--p2-color) 0px,
-        var(--p2-color) 10px,
-        var(--p2-light) 10px,
-        var(--p2-light) 20px
-      );
+      position: absolute; right: 0; top: 0; bottom: 0;
+      background: repeating-linear-gradient(90deg, var(--p2-color) 0px, var(--p2-color) 10px, var(--p2-light) 10px, var(--p2-light) 20px);
     }
-
     .vs-center {
       font-family: 'Press Start 2P', monospace;
       font-size: 0.55rem;
@@ -409,7 +359,6 @@
 
     /* ── Level ladder ── */
     .level-ladder { display: flex; flex-direction: column; gap: 4px; }
-
     .level-row {
       display: flex;
       align-items: center;
@@ -420,26 +369,13 @@
       font-size: 0.82rem;
       transition: all 0.2s;
     }
-    .level-row.active {
-      background: var(--parchment2);
-      border-color: var(--parchment3);
-    }
+    .level-row.active { background: var(--parchment2); border-color: var(--parchment3); }
     .level-row.achieved { opacity: 0.35; }
     .level-row .emoji { width: 20px; text-align: center; }
     .level-icon { width: 20px; height: 20px; object-fit: contain; vertical-align: middle; image-rendering: pixelated; }
     .level-row .level-name { flex: 1; font-weight: 700; font-size: 0.8rem; color: var(--text); }
-    .level-row .level-xp {
-      font-family: 'Press Start 2P', monospace;
-      font-size: 0.48rem;
-      color: var(--muted);
-    }
-    .you-tag {
-      font-family: 'Press Start 2P', monospace;
-      font-size: 0.42rem;
-      font-weight: 700;
-      padding: 2px 5px;
-      border-radius: 2px;
-    }
+    .level-row .level-xp { font-family: 'Press Start 2P', monospace; font-size: 0.48rem; color: var(--muted); }
+    .you-tag { font-family: 'Press Start 2P', monospace; font-size: 0.42rem; font-weight: 700; padding: 2px 5px; border-radius: 2px; }
     .you-tag-p1 { background: var(--p1-color); color: white; }
     .you-tag-p2 { background: var(--p2-color); color: white; }
 
@@ -463,10 +399,8 @@
     }
     .log-table tr:last-child td { border-bottom: none; }
     .log-table tr:hover td { background: var(--parchment2); }
-
     .log-partner-p1 { color: var(--p1-color); font-weight: 700; }
     .log-partner-p2 { color: var(--p2-color); font-weight: 700; }
-
     .xp-pill {
       display: inline-block;
       padding: 2px 7px;
@@ -512,9 +446,7 @@
       text-shadow: 1px 1px 0 rgba(0,0,0,0.4);
     }
     .section-title::before, .section-title::after {
-      content: '';
-      flex: 1;
-      height: 2px;
+      content: ''; flex: 1; height: 2px;
       background: rgba(255,255,255,0.25);
     }
 
@@ -532,7 +464,6 @@
       line-height: 1.8;
     }
 
-    /* ── Coin icon ── */
     .coin { display: inline-block; width: 10px; height: 10px; background: var(--gold); border-radius: 50%; border: 1px solid #a07800; vertical-align: middle; margin-right: 3px; }
 
     /* ── Animations ── */
@@ -551,13 +482,230 @@
     .card:nth-child(3) { animation-delay: 0.18s; }
     .card:nth-child(4) { animation-delay: 0.24s; }
 
-    /* Stardew-style decorative divider */
-    .divider {
+    .divider { text-align: center; color: var(--parchment3); font-size: 1rem; margin: 4px 0; letter-spacing: 8px; }
+
+    /* ────────────────────────────────────────────────
+       LOG A CHORE PANEL
+    ──────────────────────────────────────────────── */
+    .log-panel {
+      background: var(--parchment);
+      border: 4px solid var(--wood);
+      border-radius: 4px;
+      padding: 20px 22px 22px;
+      box-shadow: 3px 3px 0 var(--wood-dark), 5px 5px 0 rgba(0,0,0,0.15);
+      margin-bottom: var(--gap);
+      position: relative;
+      animation: fadeUp 0.4s ease both;
+    }
+    .log-panel::before {
+      content: ''; position: absolute;
+      inset: 2px; border: 1px solid var(--border-in);
+      border-radius: 2px; pointer-events: none;
+    }
+    .log-panel-title {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.58rem;
+      color: var(--text);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--parchment3);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Person toggle */
+    .person-toggle {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .person-btn {
+      flex: 1;
+      padding: 10px 8px;
+      border: 3px solid var(--parchment3);
+      border-radius: 3px;
+      background: var(--parchment2);
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.52rem;
+      cursor: pointer;
+      transition: all 0.15s;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .person-btn:hover { background: var(--parchment); }
+    .person-btn.active-p1 {
+      background: rgba(124,79,160,0.1);
+      border-color: var(--p1-color);
+      color: var(--p1-color);
+      box-shadow: 2px 2px 0 rgba(124,79,160,0.3);
+    }
+    .person-btn.active-p2 {
+      background: rgba(192,90,31,0.1);
+      border-color: var(--p2-color);
+      color: var(--p2-color);
+      box-shadow: 2px 2px 0 rgba(192,90,31,0.3);
+    }
+
+    /* Chore combobox */
+    .chore-input-wrap {
+      position: relative;
+      margin-bottom: 12px;
+    }
+    .chore-input {
+      width: 100%;
+      padding: 11px 14px;
+      border: 3px solid var(--wood);
+      border-radius: 3px;
+      background: var(--parchment2);
+      font-family: 'Lato', sans-serif;
+      font-size: 0.95rem;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .chore-input:focus {
+      border-color: var(--wood-light);
+      box-shadow: 0 0 0 2px rgba(139,94,60,0.2);
+    }
+    .chore-input::placeholder { color: var(--muted); }
+
+    .chore-dropdown {
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0; right: 0;
+      background: var(--parchment);
+      border: 3px solid var(--wood);
+      border-radius: 3px;
+      box-shadow: 3px 3px 0 var(--wood-dark), 0 8px 24px rgba(0,0,0,0.18);
+      z-index: 100;
+      max-height: 240px;
+      overflow-y: auto;
+      display: none;
+    }
+    .chore-dropdown.open { display: block; }
+
+    .chore-option {
+      padding: 10px 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--parchment3);
+      transition: background 0.1s;
+      gap: 10px;
+    }
+    .chore-option:last-child { border-bottom: none; }
+    .chore-option:hover, .chore-option.highlighted {
+      background: var(--parchment2);
+    }
+    .chore-option-name {
+      font-size: 0.9rem;
+      color: var(--text);
+      font-weight: 700;
+    }
+    .chore-option-name mark {
+      background: var(--gold);
+      color: var(--wood-dark);
+      border-radius: 1px;
+      padding: 0 1px;
+    }
+    .chore-option-xp {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.44rem;
+      color: var(--green);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .chore-no-results {
+      padding: 12px 14px;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.5rem;
+      color: var(--muted);
       text-align: center;
-      color: var(--parchment3);
-      font-size: 1rem;
-      margin: 4px 0;
-      letter-spacing: 8px;
+    }
+
+    /* Submit button */
+    .log-submit-btn {
+      width: 100%;
+      padding: 12px;
+      background: var(--green);
+      color: #fff;
+      border: 3px solid var(--green-light);
+      border-radius: 3px;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.58rem;
+      cursor: pointer;
+      box-shadow: 3px 3px 0 #2e5e24;
+      transition: all 0.1s;
+      letter-spacing: 0.05em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .log-submit-btn:hover:not(:disabled) {
+      background: var(--green-light);
+      transform: translateY(-1px);
+      box-shadow: 4px 4px 0 #2e5e24;
+    }
+    .log-submit-btn:active:not(:disabled) {
+      transform: translateY(1px);
+      box-shadow: 1px 1px 0 #2e5e24;
+    }
+    .log-submit-btn:disabled {
+      background: var(--muted);
+      border-color: var(--text-light);
+      box-shadow: 2px 2px 0 rgba(0,0,0,0.2);
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+    .log-submit-btn .btn-spinner {
+      width: 12px; height: 12px;
+      border: 2px solid rgba(255,255,255,0.4);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+
+    /* Toast notification */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--wood-dark);
+      color: var(--parchment);
+      border: 3px solid var(--wood);
+      border-radius: 4px;
+      padding: 12px 20px;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.55rem;
+      line-height: 1.7;
+      text-align: center;
+      z-index: 999;
+      box-shadow: 4px 4px 0 rgba(0,0,0,0.35);
+      transition: transform 0.35s cubic-bezier(.16,1,.3,1), opacity 0.35s;
+      opacity: 0;
+      min-width: 220px;
+      max-width: 90vw;
+    }
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+    .toast.success { border-color: var(--green-light); }
+    .toast.error   { border-color: var(--red); }
+    .toast-xp {
+      font-size: 0.9rem;
+      color: var(--gold);
+      display: block;
+      margin-top: 4px;
     }
   </style>
 </head>
@@ -571,6 +719,37 @@
       </div>
     </header>
 
+    <!-- Log a Chore Panel (always visible, above stats) -->
+    <div class="section-title">⚔️ Log a Chore</div>
+    <div class="log-panel" id="log-panel">
+      <div class="log-panel-title">✨ Who completed a chore?</div>
+
+      <!-- Person selector -->
+      <div class="person-toggle">
+        <button class="person-btn" id="btn-p1" onclick="selectPerson('p1')">👩‍🌾 <span id="btn-p1-label">Partner 1</span></button>
+        <button class="person-btn" id="btn-p2" onclick="selectPerson('p2')">🧑‍🌾 <span id="btn-p2-label">Partner 2</span></button>
+      </div>
+
+      <!-- Chore combobox -->
+      <div class="chore-input-wrap">
+        <input
+          type="text"
+          id="chore-input"
+          class="chore-input"
+          placeholder="Start typing a chore..."
+          autocomplete="off"
+          onInput="onChoreInput()"
+          onFocus="onChoreFocus()"
+          onKeyDown="onChoreKeyDown(event)"
+        />
+        <div class="chore-dropdown" id="chore-dropdown"></div>
+      </div>
+
+      <button class="log-submit-btn" id="log-submit-btn" onclick="submitChore()" disabled>
+        <span id="btn-text">✔ Log Chore</span>
+      </button>
+    </div>
+
     <div id="app">
       <div class="loading-state card">
         <div class="spinner"></div>
@@ -579,8 +758,11 @@
     </div>
   </div>
 
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
   <script>
-    // ── Config ──────────────────────────────────────────────────────────────
+    // ── Config ──────────────────────────────────────────────────────────────────
     const API_BASE = window.WORKER_URL || 'https://chore-tracker.kayla-a-mandel.workers.dev';
 
     const LEVELS = [
@@ -597,6 +779,197 @@
 
     const TOTAL_SEGMENTS = 16;
 
+    // Populated on init from /api/chores — stays in sync with worker automatically
+    let CHORE_LIST = [];
+
+    // ── Log panel state ──────────────────────────────────────────────────────────
+    let selectedPerson = null;  // 'p1' or 'p2'
+    let selectedChore  = null;  // { name, xp }
+    let highlightedIdx = -1;
+    let filteredChores = [];
+    let p1Name = 'Partner 1';
+    let p2Name = 'Partner 2';
+
+    function selectPerson(who) {
+      selectedPerson = who;
+      document.getElementById('btn-p1').className = 'person-btn' + (who === 'p1' ? ' active-p1' : '');
+      document.getElementById('btn-p2').className = 'person-btn' + (who === 'p2' ? ' active-p2' : '');
+      updateSubmitState();
+    }
+
+    function onChoreInput() {
+      selectedChore = null;
+      renderDropdown();
+      updateSubmitState();
+    }
+
+    function onChoreFocus() {
+      renderDropdown();
+    }
+
+    function onChoreKeyDown(e) {
+      const dd = document.getElementById('chore-dropdown');
+      const isOpen = dd.classList.contains('open');
+
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        highlightedIdx = Math.min(highlightedIdx + 1, filteredChores.length - 1);
+        refreshHighlight();
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        highlightedIdx = Math.max(highlightedIdx - 1, 0);
+        refreshHighlight();
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        if (isOpen && highlightedIdx >= 0 && filteredChores[highlightedIdx]) {
+          pickChore(filteredChores[highlightedIdx]);
+        } else if (selectedChore && selectedPerson) {
+          submitChore();
+        }
+      } else if (e.key === 'Escape') {
+        closeDropdown();
+      }
+    }
+
+    function renderDropdown() {
+      const query = document.getElementById('chore-input').value.trim().toLowerCase();
+      const dd = document.getElementById('chore-dropdown');
+
+      // Filter & sort: prefix matches first, then substring
+      filteredChores = CHORE_LIST
+        .map(c => ({ ...c, _score: scoreChore(c.name.toLowerCase(), query) }))
+        .filter(c => c._score > 0)
+        .sort((a, b) => b._score - a._score || a.name.localeCompare(b.name));
+
+      // If no query, show all sorted alphabetically
+      if (!query) {
+        filteredChores = [...CHORE_LIST].sort((a, b) => a.name.localeCompare(b.name));
+      }
+
+      highlightedIdx = filteredChores.length > 0 ? 0 : -1;
+
+      if (filteredChores.length === 0) {
+        dd.innerHTML = `<div class="chore-no-results">No matching chores</div>`;
+      } else {
+        dd.innerHTML = filteredChores.map((c, i) => `
+          <div class="chore-option ${i === highlightedIdx ? 'highlighted' : ''}"
+               onmousedown="pickChore(filteredChores[${i}])"
+               onmouseover="highlightedIdx=${i};refreshHighlight()">
+            <span class="chore-option-name">${highlightName(c.name, query)}</span>
+            <span class="chore-option-xp">+${c.xp} XP</span>
+          </div>
+        `).join('');
+      }
+
+      dd.classList.add('open');
+
+      // Close on outside click
+      document.addEventListener('click', outsideClick, { once: true, capture: true });
+    }
+
+    function outsideClick(e) {
+      const wrap = document.querySelector('.chore-input-wrap');
+      if (!wrap.contains(e.target)) {
+        closeDropdown();
+      } else {
+        // Re-register if click was inside
+        document.addEventListener('click', outsideClick, { once: true, capture: true });
+      }
+    }
+
+    function closeDropdown() {
+      document.getElementById('chore-dropdown').classList.remove('open');
+    }
+
+    function refreshHighlight() {
+      const items = document.querySelectorAll('.chore-option');
+      items.forEach((el, i) => el.classList.toggle('highlighted', i === highlightedIdx));
+      if (items[highlightedIdx]) {
+        items[highlightedIdx].scrollIntoView({ block: 'nearest' });
+      }
+    }
+
+    function pickChore(chore) {
+      selectedChore = chore;
+      document.getElementById('chore-input').value = chore.name;
+      closeDropdown();
+      updateSubmitState();
+    }
+
+    function scoreChore(name, query) {
+      if (!query) return 1;
+      if (name === query) return 100;
+      if (name.startsWith(query)) return 80;
+      if (name.includes(query)) return 50;
+      // word-start match
+      const words = name.split(' ');
+      if (words.some(w => w.startsWith(query))) return 65;
+      return 0;
+    }
+
+    function highlightName(name, query) {
+      if (!query) return name;
+      const idx = name.toLowerCase().indexOf(query.toLowerCase());
+      if (idx === -1) return name;
+      return name.slice(0, idx) + `<mark>${name.slice(idx, idx + query.length)}</mark>` + name.slice(idx + query.length);
+    }
+
+    function updateSubmitState() {
+      const btn = document.getElementById('log-submit-btn');
+      btn.disabled = !(selectedPerson && selectedChore);
+    }
+
+    async function submitChore() {
+      if (!selectedPerson || !selectedChore) return;
+
+      const btn = document.getElementById('log-submit-btn');
+      const btnText = document.getElementById('btn-text');
+      btn.disabled = true;
+      btnText.innerHTML = `<span class="btn-spinner"></span> Logging...`;
+
+      try {
+        const personName = selectedPerson === 'p1' ? p1Name : p2Name;
+        const res = await fetch(`${API_BASE}/api/log`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            partner: personName,
+            chore: selectedChore.name,
+          }),
+        });
+
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const result = await res.json().catch(() => ({}));
+        const xpEarned = result.xp || selectedChore.xp;
+
+        showToast('success', `${personName} logged "${selectedChore.name}"!`, `+${xpEarned} XP earned`);
+
+        // Reset form
+        document.getElementById('chore-input').value = '';
+        selectedChore = null;
+        updateSubmitState();
+
+        // Refresh stats after a short delay
+        setTimeout(loadData, 1200);
+      } catch (err) {
+        showToast('error', 'Could not log chore', err.message);
+      } finally {
+        btnText.innerHTML = '✔ Log Chore';
+        updateSubmitState();
+      }
+    }
+
+    let toastTimer = null;
+    function showToast(type, line1, line2) {
+      const toast = document.getElementById('toast');
+      toast.className = `toast ${type}`;
+      toast.innerHTML = line1 + (line2 ? `<span class="toast-xp">${line2}</span>` : '');
+      requestAnimationFrame(() => toast.classList.add('show'));
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 3500);
+    }
+
+    // ── Data helpers ──────────────────────────────────────────────────────────────
     function getLevelForXP(xp) {
       return LEVELS.reduce((best, l) => xp >= l.minXP ? l : best, LEVELS[0]);
     }
@@ -610,25 +983,38 @@
       return Math.round(((xp - curr.minXP) / (next.minXP - curr.minXP)) * 100);
     }
 
-    // ── Fetch & render ───────────────────────────────────────────────────────
+    // ── Fetch & render ───────────────────────────────────────────────────────────
     async function loadData() {
       try {
-        const [statsRes, dailyRes, logRes, levelsRes] = await Promise.all([
+        const [statsRes, dailyRes, logRes, levelsRes, choresRes] = await Promise.all([
           fetch(`${API_BASE}/api/stats`),
           fetch(`${API_BASE}/api/daily`),
           fetch(`${API_BASE}/api/log`),
           fetch(`${API_BASE}/api/levels`).catch(() => null),
+          fetch(`${API_BASE}/api/chores`).catch(() => null),
         ]);
         if (!statsRes.ok) throw new Error(`Stats API: HTTP ${statsRes.status}`);
 
-        const [statsData, dailyData, logData, levelsData] = await Promise.all([
+        const [statsData, dailyData, logData, levelsData, choresData] = await Promise.all([
           statsRes.json(),
           dailyRes.ok ? dailyRes.json() : null,
           logRes.ok ? logRes.json() : [],
           levelsRes && levelsRes.ok ? levelsRes.json() : Promise.resolve(null),
+          choresRes && choresRes.ok ? choresRes.json() : Promise.resolve(null),
         ]);
 
         if (Array.isArray(levelsData) && levelsData.length) LEVELS.splice(0, LEVELS.length, ...levelsData);
+        if (Array.isArray(choresData) && choresData.length) CHORE_LIST = choresData;
+
+        // Update person names in log panel
+        if (statsData.partner1?.partnerName) {
+          p1Name = statsData.partner1.partnerName;
+          document.getElementById('btn-p1-label').textContent = p1Name;
+        }
+        if (statsData.partner2?.partnerName) {
+          p2Name = statsData.partner2.partnerName;
+          document.getElementById('btn-p2-label').textContent = p2Name;
+        }
 
         render(statsData, dailyData, logData);
       } catch (err) {
@@ -714,7 +1100,6 @@
         </div>
       `;
 
-      // Animate VS bar
       requestAnimationFrame(() => {
         const bar = document.getElementById('vs-bar');
         const bar2 = document.getElementById('vs-bar-p2');
@@ -753,13 +1138,11 @@
             <div class="player-avatar">${avatar}</div>
             <div class="player-info">
               <div class="player-name">${name}</div>
-              <span class="level-badge"><img src="/stardew_icons/${level.emoji}" class="level-icon"> ${level.name}</span>
+              <span class="level-badge"><img src="stardew_icons/${level.emoji}" class="level-icon"> ${level.name}</span>
             </div>
           </div>
-
           <div class="xp-label">Monthly XP</div>
           <div class="xp-big">${xp.toLocaleString()}</div>
-
           <div class="xp-progress">
             <div class="xp-progress-header">
               <span>${level.name}</span>
@@ -767,7 +1150,6 @@
             </div>
             <div class="xp-bar-track">${segments}</div>
           </div>
-
           <div class="mini-stats">
             <div class="mini-stat">
               <div class="mini-stat-val">${p.todayXP || 0}</div>
@@ -791,10 +1173,9 @@
         const current = getLevelForXP(xp);
         const isActive = level.name === current.name;
         const isAchieved = xp > level.minXP && !isActive;
-
         return `
           <div class="level-row ${isActive ? 'active' : ''} ${isAchieved ? 'achieved' : ''}">
-            <img src="/stardew_icons/${level.emoji}" class="level-icon emoji">
+            <img src="stardew_icons/${level.emoji}" class="level-icon emoji">
             <span class="level-name">${level.name}</span>
             <span class="level-xp">${level.minXP} XP</span>
             ${isActive ? `<span class="you-tag you-tag-${cls}">YOU</span>` : ''}
@@ -806,15 +1187,11 @@
     function buildCharts(p1, p2, dailyData) {
       const p1Name = p1.partnerName || 'P1';
       const p2Name = p2.partnerName || 'P2';
-
       const chartDefaults = {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
-          legend: {
-            display: true,
-            labels: { color: '#7a5c3a', font: { family: 'Lato', size: 11 }, boxWidth: 12 }
-          }
+          legend: { display: true, labels: { color: '#7a5c3a', font: { family: 'Lato', size: 11 }, boxWidth: 12 } }
         },
         scales: {
           x: {
@@ -839,22 +1216,8 @@
         data: {
           labels,
           datasets: [
-            {
-              label: p1Name,
-              data: dailyData?.p1Data || [],
-              backgroundColor: 'rgba(124,79,160,0.7)',
-              borderColor: '#7c4fa0',
-              borderWidth: 2,
-              borderRadius: 2,
-            },
-            {
-              label: p2Name,
-              data: dailyData?.p2Data || [],
-              backgroundColor: 'rgba(192,90,31,0.7)',
-              borderColor: '#c05a1f',
-              borderWidth: 2,
-              borderRadius: 2,
-            }
+            { label: p1Name, data: dailyData?.p1Data || [], backgroundColor: 'rgba(124,79,160,0.7)', borderColor: '#7c4fa0', borderWidth: 2, borderRadius: 2 },
+            { label: p2Name, data: dailyData?.p2Data || [], backgroundColor: 'rgba(192,90,31,0.7)', borderColor: '#c05a1f', borderWidth: 2, borderRadius: 2 }
           ]
         },
         options: chartDefaults,
@@ -874,28 +1237,8 @@
         data: {
           labels,
           datasets: [
-            {
-              label: p1Name,
-              data: p1Cumulative,
-              borderColor: '#7c4fa0',
-              backgroundColor: 'rgba(124,79,160,0.12)',
-              tension: 0.4,
-              fill: true,
-              pointRadius: labels.length < 15 ? 3 : 0,
-              pointBackgroundColor: '#7c4fa0',
-              borderWidth: 2,
-            },
-            {
-              label: p2Name,
-              data: p2Cumulative,
-              borderColor: '#c05a1f',
-              backgroundColor: 'rgba(192,90,31,0.12)',
-              tension: 0.4,
-              fill: true,
-              pointRadius: labels.length < 15 ? 3 : 0,
-              pointBackgroundColor: '#c05a1f',
-              borderWidth: 2,
-            }
+            { label: p1Name, data: p1Cumulative, borderColor: '#7c4fa0', backgroundColor: 'rgba(124,79,160,0.12)', tension: 0.4, fill: true, pointRadius: labels.length < 15 ? 3 : 0, pointBackgroundColor: '#7c4fa0', borderWidth: 2 },
+            { label: p2Name, data: p2Cumulative, borderColor: '#c05a1f', backgroundColor: 'rgba(192,90,31,0.12)', tension: 0.4, fill: true, pointRadius: labels.length < 15 ? 3 : 0, pointBackgroundColor: '#c05a1f', borderWidth: 2 }
           ]
         },
         options: chartDefaults,
@@ -908,7 +1251,6 @@
         logEl.innerHTML = `<p style="color:var(--muted);text-align:center;padding:20px;font-family:'Press Start 2P',monospace;font-size:0.55rem;line-height:2">No chores logged yet.<br>Text your Twilio number to get started!</p>`;
         return;
       }
-
       const rowsHtml = rows.map(row => {
         const cls = row.partner === p1Name ? 'log-partner-p1' : 'log-partner-p2';
         return `
@@ -921,16 +1263,11 @@
           </tr>
         `;
       }).join('');
-
       logEl.innerHTML = `
         <table class="log-table">
           <thead>
             <tr>
-              <th>Date</th>
-              <th>Time</th>
-              <th>Partner</th>
-              <th>Chore</th>
-              <th>XP</th>
+              <th>Date</th><th>Time</th><th>Partner</th><th>Chore</th><th>XP</th>
             </tr>
           </thead>
           <tbody>${rowsHtml}</tbody>
@@ -938,7 +1275,7 @@
       `;
     }
 
-    // ── Init ─────────────────────────────────────────────────────────────────
+    // ── Init ─────────────────────────────────────────────────────────────────────
     loadData();
     setInterval(loadData, 120_000);
   </script>
